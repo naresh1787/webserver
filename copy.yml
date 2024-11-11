@@ -1,0 +1,16 @@
+---
+- hosts: webserver
+  become: true
+  become_method: sudo
+  tasks:
+
+   - name: create facts dir
+     file:
+      path: /opt/test
+      state: directory
+
+   - name: copy the file
+     copy:
+      src: files/index.html
+      dest: /opt/test/
+      mode: '0755'
